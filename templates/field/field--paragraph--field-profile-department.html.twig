@@ -1,0 +1,6 @@
+{# Renders the offices inline, comma-separated #}
+{% if items is not empty %}
+  {% for item in items %}
+    <span class="office">{{ item.content }}</span>{% if not loop.last %}<span class="office-comma">, </span>{% endif %}
+  {% endfor %}
+{% endif %}

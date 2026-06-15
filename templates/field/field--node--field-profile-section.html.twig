@@ -1,0 +1,24 @@
+{# Only attach the JS/CSS if we actually output an accordion #}
+
+{# Collect only non-empty rendered items #}
+{% set rendered_items = [] %}
+{% for item in items %}
+  {% set accordion = item.content|render %}
+  {% if accordion|striptags|trim %}
+    {% set rendered_items = rendered_items|merge([accordion]) %}
+  {% endif %}
+{% endfor %}
+
+{% if rendered_items|length %}
+  {{ attach_library('ckeditor_accordion/accordion.frontend') }}
+
+  <div class="clearfix text-formatted field field--name-body field--type-text-with-summary field--label-hidden field__item col-md-8" data-aos="fade-up">
+    <div class="ckeditor-accordion-container">
+      <dl class="ckeditor-accordion">
+        {% for accordion in rendered_items %}
+          {{ accordion }}
+        {% endfor %}
+      </dl>
+    </div>
+  </div>
+{% endif %}
