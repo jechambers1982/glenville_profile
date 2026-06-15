@@ -1,0 +1,74 @@
+{# node--profile--teaser.html.twig #}
+{#
+/**
+	Content Type Fields:
+	- field_profile_image: Employee's Photo
+	- field_profile_type: Employee Type
+	- field_has_profile: Whether the profile is linked from the directory / staff pages
+	- field_profile_name: Name field
+	  - Title
+	  - Given (First Name)
+	  - Middle Name(s)
+	  - Family (Last Name)
+	  - Generational
+	  - Credentials (Nickname)
+	- field_profile_email: Email Address
+	- field_profile_phone: Phone Number
+	- field_profile_building: The Profile Building
+	- field_profile_room: The profile Room Number
+	- field_profile_position: A paragraph with the employee's position and office
+	  - field_profile_department: The Employees Department (Unlimited) (Required)
+	  - field_profile_position: The Employee's Job Title
+	- field_profile_description: General Page Description Textarea
+	- field_profile_education: Education Textbox (Unlimited)
+	- field_profile_vitae: Curriculum Vitae Textarea
+	- field_profile_cv: Curriculum Vitea Download
+	- field_profile_publications: A list of employee publications (Unlimited)
+	- field_profile_presentations: A list of employee presentations (Unlimited)
+ */
+#}
+
+{%
+  set classes = [
+    node.bundle|clean_class,
+    view_mode ? view_mode|clean_class,
+    'clearfix',
+	'card-block-itetm',
+	'h-100',
+  ]
+%}
+
+<article{{ attributes.addClass(classes) }}>
+	<div class="profile-card-image">
+		{% if node.field_has_profile.value %}
+		<a href="{{ path('entity.node.canonical', {'node': node.id}) }}">
+		{% endif %}
+		{{ content.field_profile_image }}
+		<div class="profile-card-name">
+			<h4>{{ content.field_profile_name }}</h4>
+		</div>
+		{% if node.field_has_profile.value %}
+		</a>
+		{% endif %}
+	</div>
+	<div class="profile-card-info">
+		<div class="profile-card-position">{{ content.field_profile_position }}</div>
+			
+		{% if not node.field_profile_building.isEmpty() %}
+		<div class="profile-card-office">
+			{% if not node.field_profile_room.isEmpty() %}
+			{{ content.field_profile_room}}
+			{% endif %}
+			{{ content.field_profile_building }}
+		</div>
+		{% endif %}
+			
+		{% if not node.field_profile_phone.isEmpty() %}
+			<div class="profile-card-phone">{{ content.field_profile_phone }}</div>
+		{% endif %}
+			  
+		{% if not node.field_profile_email.isEmpty() %}
+			<div class="profile-card-email">{{ content.field_profile_email }}</div>
+		{% endif %}
+	</div>
+</article>
