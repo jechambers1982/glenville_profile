@@ -1,0 +1,27 @@
+name: Glenville Profile
+type: module
+description: Profile content type, Office taxonomy, paragraphs, and directory views.
+core_version_requirement: ^11
+package: Glenville
+dependencies:
+  - better_exposed_filters
+  - ckeditor_accordion
+  - entity_reference_revisions
+  - image
+  - file
+  - media
+  - media_library
+  - menu_ui
+  - name
+  - node
+  - options
+  - paragraphs
+  - paragraphs_ee
+  - pathauto
+  - taxonomy
+  - telephone
+  - text
+  - token
+  - unique_field_ajax
+  - user
+  - views

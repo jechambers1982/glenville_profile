@@ -1,0 +1,10 @@
+profile_directory_autosubmit:
+  js:
+    js/profile-directory-autosubmit.js: {}
+  dependencies:
+    - core/drupal
+    - core/once
+profile:
+  css:
+    theme:
+      css/profile.css: {}

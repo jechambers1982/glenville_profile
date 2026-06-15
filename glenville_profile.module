@@ -1,0 +1,280 @@
+<?php
+use Drupal\Core\Cache\Cache;
+use Drupal\Core\Cache\CacheableMetadata;
+use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\node\NodeInterface;
+use Drupal\views\Views;
+use Drupal\views\ViewExecutable;
+use Drupal\views\Plugin\views\query\QueryPluginBase;
+use Drupal\views\Plugin\views\query\Sql;
+
+/**
+ * Implements hook_theme().
+ */
+function glenville_profile_theme($existing, $type, $theme, $path) {
+  // Module templates base paths.
+  $module_path = \Drupal::service('extension.list.module')->getPath('glenville_profile');
+  $tpl = $module_path . '/templates';
+
+  return [
+	// BLOCK templates.
+	// block--views-exposed-filter-block--directory-directory-block.html.twig
+	'block__views_exposed_filter_block__directory_directory_block' => [
+      'base hook' => 'block',
+      'template'  => 'block--views-exposed-filter-block--directory-directory-block',
+      'path'      => $tpl . '/block',
+    ],
+  
+    // NODE templates.
+    // node--profile.html.twig
+    'node__profile' => [
+      'base hook' => 'node',
+      'template'  => 'node--profile',
+      'path'      => $tpl . '/node',
+    ],
+    // node--profile--teaser.html.twig
+    'node__profile__teaser' => [
+      'base hook' => 'node',
+      'template'  => 'node--profile--teaser',
+      'path'      => $tpl . '/node',
+    ],
+    // node--profile--office-teaser.html.twig
+    'node__profile__office_teaser' => [
+      'base hook' => 'node',
+      'template'  => 'node--profile--office-teaser',
+      'path'      => $tpl . '/node',
+    ],
+
+    // FIELD templates.
+    // field--node--field-profile-education.html.twig
+    'field__node__field_profile_education' => [
+      'base hook' => 'field',
+      'template'  => 'field--node--field-profile-education',
+      'path'      => $tpl . '/field',
+    ],
+	// field--node--field-profile-section.html.twig
+    'field__node__field_profile_section' => [
+      'base hook' => 'field',
+      'template'  => 'field--node--field-profile-section',
+      'path'      => $tpl . '/field',
+    ],
+    // field--paragraph--field-profile-department.html.twig
+    'field__paragraph__field_profile_department' => [
+      'base hook' => 'field',
+      'template'  => 'field--paragraph--field-profile-department',
+      'path'      => $tpl . '/field',
+    ],
+
+    // PARAGRAPH template.
+    // paragraph--university-office.html.twig
+    'paragraph__university_office' => [
+      'base hook' => 'paragraph',
+      'template'  => 'paragraph--university-office',
+      'path'      => $tpl . '/paragraphs',
+    ],
+	
+	// paragraph--directory.html.twig
+    'paragraph__directory' => [
+      'base hook' => 'paragraph',
+      'template'  => 'paragraph--directory',
+      'path'      => $tpl . '/paragraphs',
+    ],
+	
+	// paragraph--office-directory.html.twig
+    'paragraph__office_directory' => [
+      'base hook' => 'paragraph',
+      'template'  => 'paragraph--office-directory',
+      'path'      => $tpl . '/paragraphs',
+    ],
+	
+	// paragraph--profile-section.html.twig
+    'paragraph__profile_section' => [
+      'base hook' => 'paragraph',
+      'template'  => 'paragraph--profile-section',
+      'path'      => $tpl . '/paragraphs',
+    ],
+
+    // VIEWS template.
+    // views-view--directory--directory-block.html.twig
+    'views_view__directory__directory_block' => [
+      'base hook' => 'views_view',
+      'template'  => 'views-view--directory--directory-block',
+      'path'      => $tpl . '/views',
+    ],
+	
+	// views-view-unformatted--directory--directory-block.html.twig
+    'views_view_unformatted__directory__directory_block' => [
+      'base hook' => 'views_view_unformatted',
+      'template'  => 'views-view-unformatted--directory--directory-block',
+      'path'      => $tpl . '/views',
+    ],
+  ];
+}
+
+/**
+ * Implements hook_page_attachments().
+ */
+function glenville_profile_page_attachments(array &$attachments) {
+  $route = \Drupal::routeMatch()->getRouteName();
+  // Replace with your actual view route, e.g. view.profiles_directory.directory_block
+  if ($route === 'view.profiles_directory.directory_block') {
+    $attachments['#attached']['library'][] = 'glenville_profile/js/profile_directory_autosubmit';
+  }
+}
+
+/**
+ * Implements hook_preprocess_node().
+ * Surfaces #office_positions to Twig when rendering profile:office_teaser,
+ * and attaches the profile CSS library for profile nodes.
+ */
+function glenville_profile_preprocess_node(array &$variables) {
+  // Attach CSS library on all profile nodes (any view mode).
+  if (isset($variables['node']) && $variables['node'] instanceof NodeInterface && $variables['node']->bundle() === 'profile') {
+    $variables['#attached']['library'][] = 'glenville_profile/profile';
+  }
+
+  // Only expose office_positions for the office_teaser view mode.
+  if (
+    empty($variables['node']) ||
+    !($variables['node'] instanceof NodeInterface) ||
+    $variables['node']->bundle() !== 'profile' ||
+    ($variables['view_mode'] ?? '') !== 'office_teaser'
+  ) {
+    return;
+  }
+
+  if (isset($variables['elements']['#office_positions'])) {
+    $variables['office_positions'] = $variables['elements']['#office_positions'];
+  }
+}
+
+/**
+ * Implements hook_preprocess_paragraph().
+ * Renders the directory view inside the office_directory paragraph.
+ */
+function glenville_profile_preprocess_paragraph(array &$vars) {
+  if (!isset($vars['paragraph']) || $vars['paragraph']->bundle() !== 'office_directory') {
+    return;
+  }
+
+  $term = $vars['paragraph']->get('field_office_directory')->entity ?? NULL;
+  if ($term && ($view = Views::getView('directory'))) {
+    // Build the render array for the display, passing the TID as contextual arg.
+    $vars['office_view'] = $view->buildRenderable('office_directory', [$term->id()]);
+    // Add cache tags so changes to the term invalidate the nested view.
+    $vars['office_view']['#cache']['tags'] = Cache::mergeTags(
+      $vars['office_view']['#cache']['tags'] ?? [],
+      $term->getCacheTags()
+    );
+  }
+}
+
+/**
+ * Implements hook_views_query_alter().
+ * Collapses duplicates by grouping on nid for the office_directory display.
+ */
+function glenville_profile_views_query_alter(ViewExecutable $view, QueryPluginBase $query): void {
+  if ($view->id() !== 'directory' || $view->current_display !== 'office_directory') {
+    return;
+  }
+  if (!$query instanceof Sql) {
+    return;
+  }
+
+  $base_table = $view->storage->get('base_table') ?? 'node_field_data';
+  $info = $query->getTableInfo($base_table);
+  $alias = $info['alias'] ?? $base_table;
+
+  $query->addGroupBy("$alias.nid");
+}
+
+/**
+ * Implements hook_views_pre_render().
+ * Capture the contextual office term (Single ID) for the directory/office_directory display.
+ */
+function glenville_profile_views_pre_render(ViewExecutable $view) {
+  if ($view->id() !== 'directory' || $view->current_display !== 'office_directory') {
+    return;
+  }
+
+  // Contextual filter is "Single ID" → args[0] is the TID.
+  $tid = null;
+  if (!empty($view->args)) {
+    $raw_arg0 = $view->args[0] ?? null;
+    if (is_numeric($raw_arg0)) {
+      $tid = (int) $raw_arg0;
+    }
+  }
+  if ($tid) {
+    \Drupal::request()->attributes->set('glenville_profile.office_tid', $tid);
+  }
+}
+
+/**
+ * Implements hook_entity_view_alter().
+ * Filters positions by the captured office TID and exposes them to Twig.
+ */
+function glenville_profile_entity_view_alter(array &$build, EntityInterface $entity, EntityViewDisplayInterface $display) {
+  // Only for Profile nodes in "office_teaser" view mode.
+  if (!($entity instanceof NodeInterface) || $entity->bundle() !== 'profile' || $display->getMode() !== 'office_teaser') {
+    return;
+  }
+
+  // TID captured in views_pre_render.
+  $tid = (int) (\Drupal::request()->attributes->get('glenville_profile.office_tid') ?? 0);
+  if ($tid === 0) {
+    return;
+  }
+
+  // Node field that references paragraphs (adjust if your machine name differs).
+  $node_paragraph_ref_field = 'field_profile_position';
+
+  $positions = [];
+  if ($entity->hasField($node_paragraph_ref_field) && !$entity->get($node_paragraph_ref_field)->isEmpty()) {
+    $paras = $entity->get($node_paragraph_ref_field)->referencedEntities();
+
+    foreach ($paras as $p) {
+      // Paragraph field machine names.
+      $dept_field  = 'field_profile_department'; // taxonomy term refs (multi)
+      $title_field = 'field_profile_position';   // plain text
+      $level_field = 'field_profile_level';      // list (int-like)
+
+      if (!$p->hasField($dept_field) || $p->get($dept_field)->isEmpty()) {
+        continue;
+      }
+
+      $dept_vals = $p->get($dept_field)->getValue(); // [['target_id'=>X], ...]
+      $dept_tids = array_map(static function(array $it): int {
+        return (int) ($it['target_id'] ?? 0);
+      }, $dept_vals);
+
+      if (!in_array($tid, $dept_tids, true)) {
+        continue;
+      }
+
+      $title = (string) ($p->get($title_field)->value ?? '');
+      if ($title === '') {
+        continue;
+      }
+      $level = (int) ($p->get($level_field)->value ?? 0);
+
+      $positions[] = ['title' => $title, 'level' => $level];
+    }
+  }
+
+  if ($positions) {
+    usort($positions, static fn($a, $b) => $a['level'] <=> $b['level']);
+  }
+
+  // Expose to Twig via preprocess_node.
+  $build['#office_positions'] = $positions;
+
+  // Add cacheability from the term so edits to the term bust cache.
+  if ($tid) {
+    $term = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->load($tid);
+    if ($term) {
+      CacheableMetadata::createFromObject($term)->applyTo($build);
+    }
+  }
+}

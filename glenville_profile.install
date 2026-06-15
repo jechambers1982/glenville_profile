@@ -1,0 +1,109 @@
+<?php
+
+use Drupal\taxonomy\Entity\Term;
+
+/**
+ * Implements hook_install().
+ */
+function glenville_profile_install(): void {
+  // Seed "Office" terms if they don't already exist.
+  glenville_profile_seed_offices([
+    'Academic Affairs',
+    'Acrobatics and Tumbling',
+    'Administration',
+    'Admissions',
+    'Alumni Affairs',
+	'Aquatics and Recreation',
+	'Archives',
+	'Athletics',
+	'Barnes & Noble Bookstore',
+	'Baseball',
+	"Basketball (Men's)",
+	"Basketball (Women's)",
+	'Boxing',
+	'Business and Finance',
+	"Cashier's Office",
+	'Cheerleading',
+	'College of Health Sciences',
+	'Counseling Center',
+	"Cross Country (Men's)",
+	"Cross Country (Women's)",
+	'Department of Business',
+	'Department of Criminal Justice',
+	'Department of Education',
+	'Department of Fine Arts',
+	'Department of Land Resources',
+	'Department of Language and Literature',
+	'Department of Science and Mathmematics',
+	'Department of Social Science',
+	'Financial Aid',
+	'Fitness Center',
+	'Football',
+	"Golf (Men's)",
+	"Golf (Women's)",
+	'GSU Foundation',
+	'Graduate Studies',
+	'Hidden Promise Consortium',
+	'Honors Program',
+	'Human Resources',
+	'Institutional Review Board',
+	'Instructional Technology',
+	'Library (Robert F. Kidd Library)',
+	'Marketing and Public Relations',
+	'Off-Campus Programming',
+	'Physical Plant',
+	'Pioneer Support Center',
+	'Post Office',
+	"President's Office",
+	'Print Shop',
+	'Public Safety',
+	'Purchasing',
+	'Registrar',
+	'Residence Life',
+	"Soccer (Women's)",
+	'Softball',
+	'Student Life',
+	'Student Success and Retention',
+	'Student Support Services',
+	'Technology',
+	'Title IX/AA/EEO',
+	"Track and Field (Men's)",
+	"Track and Field (Women's)",
+	'University Advancement',
+	'Volleyball',
+	'Website Technology',
+	'Wrestling',
+  ]);
+}
+
+/**
+ * Create Office terms by name if missing.
+ *
+ * @param array $names
+ *   Flat list of term names.
+ */
+function glenville_profile_seed_offices(array $names): void {
+  $vid = 'offices';
+  $storage = \Drupal::entityTypeManager()->getStorage('taxonomy_term');
+
+  foreach ($names as $name) {
+    // Check if a term with this name already exists in the vocabulary.
+    $tids = \Drupal::entityQuery('taxonomy_term')
+      ->condition('vid', $vid)
+      ->condition('name', $name)
+      ->accessCheck(FALSE)
+      ->range(0, 1)
+      ->execute();
+
+    if ($tids) {
+      continue; // Skip duplicates.
+    }
+
+    $term = $storage->create([
+      'vid' => $vid,
+      'name' => $name,
+      'langcode' => 'en',
+    ]);
+    $term->save();
+  }
+}
