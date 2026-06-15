@@ -1,0 +1,7 @@
+{% if items %}
+  <ul class="education-list">
+    {% for item in items %}
+      <li class="education-list-item">{{ item.content }}</li>
+    {% endfor %}
+  </ul>
+{% endif %}
