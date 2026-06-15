@@ -1,0 +1,13 @@
+{# themes/custom/university_pro/templates/block/block--views-exposed-filter-block--directory-directory-block.html.twig #}
+{%
+  set classes = [
+    'block',
+    'block--views-exposed',
+    'directory__filters',
+  ]
+%}
+<div{{ attributes.addClass(classes) }}>
+  <div class="directory__filters-inner">
+    {{ content }}
+  </div>
+</div>
