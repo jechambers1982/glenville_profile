@@ -1,0 +1,28 @@
+uuid: aeb588f8-212a-4c31-9de8-b218d4593dac
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - glenville_profile
+_core:
+  default_config_hash: mSW64kp9gdTMMNtyYGuQzN8VLyutB1On2-AJI_QJPGk
+name: profile_headshot_card
+label: 'Profile Headshot Card'
+effects:
+  c7f7b162-6293-4d96-b6c0-cb3ee07f84b6:
+    uuid: c7f7b162-6293-4d96-b6c0-cb3ee07f84b6
+    id: image_scale
+    weight: 1
+    data:
+      width: 245
+      height: 318
+      upscale: true
+  ae5a0777-200d-44ed-83c6-701b6284a89b:
+    uuid: ae5a0777-200d-44ed-83c6-701b6284a89b
+    id: image_scale_and_crop
+    weight: 2
+    data:
+      width: 245
+      height: 318
+      anchor: center-center

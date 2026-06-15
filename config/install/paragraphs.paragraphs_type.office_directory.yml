@@ -1,0 +1,18 @@
+uuid: ee074001-dcc8-4b24-995c-520c0ad4f4e3
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs_ee
+  enforced:
+    module:
+      - glenville_profile
+third_party_settings:
+  paragraphs_ee:
+    paragraphs_categories: {  }
+id: office_directory
+label: 'Office Directory'
+icon_uuid: null
+icon_default: null
+description: 'List a list of people by what office they are tagged'
+behavior_plugins: {  }

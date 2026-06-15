@@ -1,0 +1,26 @@
+uuid: 6f64e12b-ec32-432a-b749-e0c6e3e2d230
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - glenville_profile
+name: profile_headshot
+label: 'Profile Headshot'
+effects:
+  c9b71b47-d041-4d3c-b444-24dcee7b2858:
+    uuid: c9b71b47-d041-4d3c-b444-24dcee7b2858
+    id: image_scale_and_crop
+    weight: -9
+    data:
+      width: 350
+      height: 455
+      anchor: center-center
+  41284817-fd31-43f2-8d07-9763c7728b79:
+    uuid: 41284817-fd31-43f2-8d07-9763c7728b79
+    id: image_scale
+    weight: -10
+    data:
+      width: 350
+      height: 455
+      upscale: true

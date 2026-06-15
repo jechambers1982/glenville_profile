@@ -1,0 +1,25 @@
+uuid: 9aef2022-6025-44d4-8a7a-a780b5c475a5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_section_body
+    - paragraphs.paragraphs_type.profile_section
+  module:
+    - text
+  enforced:
+    module:
+      - glenville_profile
+id: paragraph.profile_section.field_section_body
+field_name: field_section_body
+entity_type: paragraph
+bundle: profile_section
+label: 'Section Body'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats: {  }
+field_type: text_long

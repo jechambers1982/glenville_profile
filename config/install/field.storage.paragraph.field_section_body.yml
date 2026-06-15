@@ -1,0 +1,22 @@
+uuid: 22ec4cef-62c4-44a3-8f33-f32ad37f73ad
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs
+    - text
+  enforced:
+    module:
+      - glenville_profile
+id: paragraph.field_section_body
+field_name: field_section_body
+entity_type: paragraph
+type: text_long
+settings: {  }
+module: text
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,0 +1,18 @@
+uuid: 3a539d19-740d-4a28-9350-4a060cf73bbf
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs_ee
+  enforced:
+    module:
+      - glenville_profile
+third_party_settings:
+  paragraphs_ee:
+    paragraphs_categories: {  }
+id: university_office
+label: 'University Office'
+icon_uuid: null
+icon_default: null
+description: 'Links a profile to a university office and describes their position.'
+behavior_plugins: {  }

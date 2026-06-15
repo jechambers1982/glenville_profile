@@ -1,0 +1,38 @@
+uuid: 21b0fdda-973a-4007-8864-47249c8cecb8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_office_directory
+    - paragraphs.paragraphs_type.office_directory
+    - taxonomy.vocabulary.offices
+  module:
+    - unique_field_ajax
+  enforced:
+    module:
+      - glenville_profile
+third_party_settings:
+  unique_field_ajax:
+    message: "Field '%label' <strong>must</strong> be unique.\r\nThe value '%value' can also be found on %link."
+    message_warning: "Field '%label' <em>should</em> be unique.\r\nThe value '%value' can also be found on %link."
+id: paragraph.office_directory.field_office_directory
+field_name: field_office_directory
+entity_type: paragraph
+bundle: office_directory
+label: Office
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      offices: offices
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

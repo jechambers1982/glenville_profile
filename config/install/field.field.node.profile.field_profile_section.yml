@@ -1,0 +1,34 @@
+uuid: eaf4363f-9c23-4d3b-ab5b-226c6423e5bc
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_profile_section
+    - node.type.profile
+    - paragraphs.paragraphs_type.profile_section
+  module:
+    - entity_reference_revisions
+  enforced:
+    module:
+      - glenville_profile
+id: node.profile.field_profile_section
+field_name: field_profile_section
+entity_type: node
+bundle: profile
+label: 'Profile Section'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      profile_section: profile_section
+    negate: 0
+    target_bundles_drag_drop:
+      profile_section:
+        weight: 118
+        enabled: true
+field_type: entity_reference_revisions

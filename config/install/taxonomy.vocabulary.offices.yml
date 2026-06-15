@@ -1,0 +1,12 @@
+uuid: 60c31e91-a00e-4f86-a14d-e9d3af7fd6da
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - glenville_profile
+name: Offices
+vid: offices
+description: 'List of University Offices'
+weight: 0
+new_revision: false

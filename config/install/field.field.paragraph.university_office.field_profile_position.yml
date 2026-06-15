@@ -1,0 +1,28 @@
+uuid: aea1be24-1926-42b0-99ee-858d10f1a496
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_profile_position
+    - paragraphs.paragraphs_type.university_office
+  module:
+    - unique_field_ajax
+  enforced:
+    module:
+      - glenville_profile
+third_party_settings:
+  unique_field_ajax:
+    message: "Field '%label' <strong>must</strong> be unique.\r\nThe value '%value' can also be found on %link."
+    message_warning: "Field '%label' <em>should</em> be unique.\r\nThe value '%value' can also be found on %link."
+id: paragraph.university_office.field_profile_position
+field_name: field_profile_position
+entity_type: paragraph
+bundle: university_office
+label: Position
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

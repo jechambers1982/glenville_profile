@@ -1,0 +1,25 @@
+uuid: 14823e85-a83c-4b03-bda3-5de831e60e31
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+    - unique_field_ajax
+  enforced:
+    module:
+      - glenville_profile
+third_party_settings:
+  menu_ui:
+    available_menus:
+      - main
+    parent: 'main:'
+  unique_field_ajax:
+    message: "Field '%label' <strong>must</strong> be unique.\r\nThe value '%value' can also be found on %link."
+    message_warning: "Field '%label' <em>should</em> be unique.\r\nThe value '%value' can also be found on %link."
+name: Profile
+type: profile
+description: 'Profile information and pages for faculty and staff'
+help: null
+new_revision: true
+preview_mode: 1
+display_submitted: true

@@ -1,0 +1,33 @@
+uuid: 7add78fe-77db-4a88-b0a3-094a3ddcac29
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.office_directory.field_office_directory
+    - field.field.paragraph.office_directory.field_title
+    - paragraphs.paragraphs_type.office_directory
+  enforced:
+    module:
+      - glenville_profile
+id: paragraph.office_directory.default
+targetEntityType: paragraph
+bundle: office_directory
+mode: default
+content:
+  field_office_directory:
+    type: entity_reference_label
+    label: hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_title:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden: {  }

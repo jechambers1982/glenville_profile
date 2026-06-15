@@ -1,0 +1,21 @@
+uuid: afc2ddaa-d50c-435d-8214-7fd28d2a0d06
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+  enforced:
+    module:
+      - glenville_profile
+id: node.field_profile_email
+field_name: field_profile_email
+entity_type: node
+type: email
+settings: {  }
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

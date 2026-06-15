@@ -1,0 +1,18 @@
+uuid: ee6c9011-5895-4b5f-ac32-1fd0d1053a0f
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs_ee
+  enforced:
+    module:
+      - glenville_profile
+third_party_settings:
+  paragraphs_ee:
+    paragraphs_categories: {  }
+id: profile_section
+label: 'Profile Section'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

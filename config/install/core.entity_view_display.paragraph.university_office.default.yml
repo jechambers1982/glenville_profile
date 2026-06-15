@@ -1,0 +1,35 @@
+uuid: c619d0ed-b558-46c7-a603-9ffcdcb68a51
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.university_office.field_profile_department
+    - field.field.paragraph.university_office.field_profile_level
+    - field.field.paragraph.university_office.field_profile_position
+    - paragraphs.paragraphs_type.university_office
+  enforced:
+    module:
+      - glenville_profile
+id: paragraph.university_office.default
+targetEntityType: paragraph
+bundle: university_office
+mode: default
+content:
+  field_profile_department:
+    type: entity_reference_label
+    label: hidden
+    settings:
+      link: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_profile_position:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  field_profile_level: true

@@ -1,0 +1,25 @@
+uuid: 1a89e8a5-f7f2-4005-b88a-619f6f47cdd8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_profile_staff_info
+    - node.type.profile
+  module:
+    - text
+  enforced:
+    module:
+      - glenville_profile
+id: node.profile.field_profile_staff_info
+field_name: field_profile_staff_info
+entity_type: node
+bundle: profile
+label: 'Staff Additional Info'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats: {  }
+field_type: text_long

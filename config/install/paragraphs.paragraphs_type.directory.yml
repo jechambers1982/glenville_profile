@@ -1,0 +1,16 @@
+uuid: 2f87c033-6439-4b8b-a02d-bbdfdac81b7b
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs
+    - views
+  enforced:
+    module:
+      - glenville_profile
+id: directory
+label: 'University Directory'
+icon_uuid: null
+icon_default: null
+description: 'Renders the Directory Views block.'
+behavior_plugins: {  }

@@ -1,0 +1,25 @@
+uuid: dd3e9f5e-8c87-4bd4-8cba-be1ba1889003
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+  enforced:
+    module:
+      - glenville_profile
+id: profile_path
+label: 'Profile Path'
+type: 'canonical_entities:node'
+pattern: 'directory/[node:title]'
+selection_criteria:
+  04e9d7cc-ef7e-48d6-be97-266ee122556f:
+    id: 'entity_bundle:node'
+    negate: false
+    uuid: 04e9d7cc-ef7e-48d6-be97-266ee122556f
+    context_mapping:
+      node: node
+    bundles:
+      profile: profile
+selection_logic: and
+weight: -5
+relationships: {  }

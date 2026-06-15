@@ -1,0 +1,14 @@
+uuid: ec9be9a8-552f-4266-bce7-00ef756524aa
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.offices
+  enforced:
+    module:
+      - glenville_profile
+id: taxonomy_term.offices
+target_entity_type_id: taxonomy_term
+target_bundle: offices
+default_langcode: site_default
+language_alterable: false

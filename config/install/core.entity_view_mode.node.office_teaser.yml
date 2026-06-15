@@ -1,0 +1,14 @@
+uuid: 6b6a3cfb-cf75-4899-b784-da980962ec42
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+  enforced:
+    module:
+      - glenville_profile
+id: node.office_teaser
+label: 'Office Teaser'
+description: null
+targetEntityType: node
+cache: true

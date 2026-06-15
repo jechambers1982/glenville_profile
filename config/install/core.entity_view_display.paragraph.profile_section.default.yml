@@ -1,0 +1,34 @@
+uuid: 9daad65f-ef31-4f57-9f87-6b3834236dc3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.profile_section.field_section_body
+    - field.field.paragraph.profile_section.field_section_title
+    - paragraphs.paragraphs_type.profile_section
+  module:
+    - text
+  enforced:
+    module:
+      - glenville_profile
+id: paragraph.profile_section.default
+targetEntityType: paragraph
+bundle: profile_section
+mode: default
+content:
+  field_section_body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_section_title:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden: {  }

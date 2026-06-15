@@ -1,0 +1,48 @@
+uuid: b9a8ad3e-6896-4741-a460-000984e21c9a
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+    - paragraphs
+  enforced:
+    module:
+      - glenville_profile
+id: paragraph.field_profile_level
+field_name: field_profile_level
+entity_type: paragraph
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: '30'
+      label: 'Associate Director'
+    -
+      value: '40'
+      label: 'Assistant Director'
+    -
+      value: '50'
+      label: Director
+    -
+      value: '60'
+      label: Chairperson
+    -
+      value: '70'
+      label: Dean
+    -
+      value: '80'
+      label: 'Associate Vice President'
+    -
+      value: '90'
+      label: 'Vice President'
+    -
+      value: '99'
+      label: President
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

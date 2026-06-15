@@ -1,0 +1,24 @@
+uuid: 2dfb51ab-6002-4a74-8a18-199d22989f17
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+  enforced:
+    module:
+      - glenville_profile
+id: node.field_profile_education
+field_name: field_profile_education
+entity_type: node
+type: string
+settings:
+  max_length: 255
+  case_sensitive: false
+  is_ascii: false
+module: core
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

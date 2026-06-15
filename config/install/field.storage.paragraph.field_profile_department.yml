@@ -1,0 +1,23 @@
+uuid: 1d2f3cbc-cda8-43d0-ab17-917a3a8eb3b6
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs
+    - taxonomy
+  enforced:
+    module:
+      - glenville_profile
+id: paragraph.field_profile_department
+field_name: field_profile_department
+entity_type: paragraph
+type: entity_reference
+settings:
+  target_type: taxonomy_term
+module: core
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

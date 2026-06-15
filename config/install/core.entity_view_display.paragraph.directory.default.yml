@@ -1,0 +1,19 @@
+uuid: ee9a55fd-7a96-48d9-964f-92c8e0aef595
+langcode: en
+status: true
+dependencies:
+  config:
+    - paragraphs.paragraphs_type.directory
+  module:
+    - paragraphs
+  enforced:
+    module:
+      - glenville_profile
+id: paragraph.directory.default
+targetEntityType: paragraph
+bundle: directory
+mode: default
+content: {  }
+hidden:
+  created: true
+  status: true

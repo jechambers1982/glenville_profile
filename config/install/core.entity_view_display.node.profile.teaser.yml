@@ -1,0 +1,123 @@
+uuid: 8b3f4c0c-ae54-42a7-a55b-dc8915d9bec5
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.profile.field_banner_image
+    - field.field.node.profile.field_has_profile
+    - field.field.node.profile.field_profile_building
+    - field.field.node.profile.field_profile_cv
+    - field.field.node.profile.field_profile_description
+    - field.field.node.profile.field_profile_education
+    - field.field.node.profile.field_profile_email
+    - field.field.node.profile.field_profile_image
+    - field.field.node.profile.field_profile_name
+    - field.field.node.profile.field_profile_phone
+    - field.field.node.profile.field_profile_position
+    - field.field.node.profile.field_profile_room
+    - field.field.node.profile.field_profile_section
+    - field.field.node.profile.field_profile_staff_info
+    - field.field.node.profile.field_profile_type
+    - image.style.profile_headshot_card
+    - node.type.profile
+  module:
+    - entity_reference_revisions
+    - media
+    - name
+    - telephone
+    - user
+  enforced:
+    module:
+      - glenville_profile
+id: node.profile.teaser
+targetEntityType: node
+bundle: profile
+mode: teaser
+content:
+  field_has_profile:
+    type: boolean
+    label: hidden
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 7
+    region: content
+  field_profile_building:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_profile_email:
+    type: email_mailto
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 6
+    region: content
+  field_profile_image:
+    type: media_thumbnail
+    label: hidden
+    settings:
+      image_link: ''
+      image_style: profile_headshot_card
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_profile_name:
+    type: name_default
+    label: hidden
+    settings:
+      format: default
+      markup: none
+      list_format: ''
+      link_target: ''
+      preferred_field_reference: ''
+      preferred_field_reference_separator: ', '
+      alternative_field_reference: ''
+      alternative_field_reference_separator: ', '
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_profile_phone:
+    type: telephone_link
+    label: hidden
+    settings:
+      title: ''
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  field_profile_position:
+    type: entity_reference_revisions_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_profile_room:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 3
+    region: content
+hidden:
+  field_banner_image: true
+  field_profile_cv: true
+  field_profile_description: true
+  field_profile_education: true
+  field_profile_section: true
+  field_profile_staff_info: true
+  field_profile_type: true
+  langcode: true
+  links: true

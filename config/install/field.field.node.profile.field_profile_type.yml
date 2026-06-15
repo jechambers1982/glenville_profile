@@ -1,0 +1,29 @@
+uuid: 0fa68eef-9fa2-4105-9e4a-bdefd7a37153
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_profile_type
+    - node.type.profile
+  module:
+    - options
+    - unique_field_ajax
+  enforced:
+    module:
+      - glenville_profile
+third_party_settings:
+  unique_field_ajax:
+    message: "Field '%label' <strong>must</strong> be unique.\r\nThe value '%value' can also be found on %link."
+    message_warning: "Field '%label' <em>should</em> be unique.\r\nThe value '%value' can also be found on %link."
+id: node.profile.field_profile_type
+field_name: field_profile_type
+entity_type: node
+bundle: profile
+label: 'Employee Type'
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string
