@@ -1,0 +1,10 @@
+{# templates/paragraph--directory.html.twig #}
+
+<section class="directory">
+	<div class="container">
+		<div class="directory-list" data-aos="fade-up">
+			{{ drupal_block('views_exposed_filter_block:directory-directory_block') }}
+			{{ drupal_view('directory', 'directory_block') }}
+		</div>
+	</div>
+</section>
