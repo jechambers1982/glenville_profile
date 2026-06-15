@@ -1,0 +1,150 @@
+/* Profile Page Styles */
+
+section.primary {
+	margin-bottom: 3em;
+}
+
+div.profile-position {
+	font-size: 1.2em;
+}
+
+div.profile-contact {
+	margin-top: 2em;
+}
+
+div.office-location,
+div.office-email,
+div.office-phone,
+div.office-cv,
+div.education {
+	margin-bottom: 1em;
+}
+
+h4.profile-contact-title {
+	font-size: 1.3em;
+	color: var(--primary-color);
+	margin: 0;
+}
+
+span.room-number div.field--name-field-profile-room,
+span.building div.field--name-field-profile-building {
+	display: inline;
+}
+
+div.profile-image img {
+	border: 2px solid #fff;
+	position: absolute;
+	max-width: 350px;
+}
+
+section.profile-extra {
+	background-color: #fff;
+	padding-top: 3em;
+	padding-bottom: 3em;
+	position: unset;
+}
+
+/* Directory Page Syles */
+div.directory__filters-inner fieldset,
+div.directory__filters-inner div.form-actions {
+	margin: 10px;
+}
+
+div.directory__filters-inner input,
+div.directory__filters-inner select {
+	height: 35px;
+}
+
+div.directory__filters-inner select {
+	background-color: #fff;
+}
+
+div.directory__filters-inner button {
+	background-color: var(--primary-color);
+}
+
+article.profile.teaser {
+	margin-bottom: 3em;
+	border: 1px solid var(--primary-color);
+	background: #fff;
+}
+
+article.profile.teaser div.row {
+	margin: 0 -8px;
+}
+
+article.profile.teaser div.field--name-field-profile-room,
+article.profile.teaser div.field--name-field-profile-building {
+	display: inline;
+}
+
+div.profile-card-image {
+	position: relative;
+}
+
+div.profile-card-image div.field--name-field-profile-image {
+	margin-bottom: 0px;
+}
+
+div.profile-card-image img {
+	width: 100%;
+	height: auto;
+}
+
+div.profile-card-info {
+	padding: 10px;
+}
+
+div.profile-card-staff-info {
+	margin-top: 1em;
+}
+
+div.profile-card-name {
+	position: absolute;
+	bottom: 0;
+	background-color: rgba(255, 255, 255, 0.75);
+	padding: 5px 10px;
+	width: 100%
+}
+
+div.profile-card-name h4 {
+	font-size: 20px;
+}
+
+div.position {
+	border-bottom: 2px solid #ccc;
+	padding-bottom: 10px;
+	margin-bottom: 10px;
+}
+
+div.position span.title {
+	font-weight: bold;
+	display: block
+}
+
+div.position span.office-dash,
+div.position span.office-comma {
+	display: none;
+}
+
+div.position span.offices span.office {
+	display: block;
+}
+
+/** Office Staff Listing Styles **/
+div.profile-staff-image img {
+	border: 1px solid #000;
+}
+
+div.profile-staff-name h4 {
+	margin-bottom: 0;
+}
+
+ul.office-positions {
+	margin-bottom: 0;
+}
+
+div.profile-card-office div.field--name-field-profile-room,
+div.profile-card-office div.field--name-field-profile-building {
+	display: inline;
+}
