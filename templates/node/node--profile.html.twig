@@ -1,0 +1,120 @@
+{# node--profile.html.twig #}
+{#
+/**
+	Content Type Fields:
+	- field_banner_media: The banner displayed at the top of the page (required) [Note: this will need to be added after the fact]
+	- field_profile_image: Employee's Photo
+	- field_profile_type: Employee Type
+	- field_has_profile: Whether the profile is linked from the directory / staff pages
+	- field_profile_name: Name field
+	  - Title
+	  - Given (First Name)
+	  - Middle Name(s)
+	  - Family (Last Name)
+	  - Generational
+	  - Credentials (Nickname)
+	- field_profile_email: Email Address
+	- field_profile_phone: Phone Number
+	- field_profile_building: The Profile Building
+	- field_profile_room: The profile Room Number
+	- field_profile_position: A paragraph with the employee's position and office
+	  - field_profile_department: The Employees Department (Unlimited) (Required)
+	  - field_profile_position: The Employee's Job Title
+	- field_profile_description: General Page Description Textarea
+	- field_profile_education: Education Textbox (Unlimited)
+	- field_profile_cv: Curriculum Vitea Download
+	- field_profile_section: A paragraph for page sections
+	  - field_section_title: The section title
+	  - field_section_body: The section body
+	- field_profile_staff_info: A field to display additional information on the office staff listing
+ */
+#}
+
+{% include '@university_pro/header/header.html.twig' %}
+<!-- Feature Top -->
+	<div class="featured-top">
+		<aside class="featured-top__inner section layout-container clearfix" role="complementary">
+			{{ page.featured_top }}
+		</aside>
+	</div>
+<!-- End of Feature Top -->
+	<main id="main" class="clearfix" role="main">
+		<section id="profile-page" class="primary clearfix">
+			<div class="container">
+				<div class="profile-contact-main row">
+					<div class="profile-info col-sm-8">
+						<h2 class="profile-name">{{ content.field_profile_name }}</h2>
+						<div class="profile-position">{{ content.field_profile_position }}</div>
+						<div class="profile-contact row">
+						{% if not node.field_profile_building.isEmpty() %}
+							<div class="office-location col-sm-6">
+								<h4 class="profile-contact-title">Office Location</h4>
+								<span class="room-number">{% if not node.field_profile_room.isEmpty() %}{{ content.field_profile_room }} {% endif %}</span>
+								<span class="building">{{ content.field_profile_building }}</span>
+							</div>
+						{% endif %}
+						
+						{% if not node.field_profile_email.isEmpty() %}
+							<div class="office-email col-sm-6">
+								<h4 class="profile-contact-title">Email</h4>
+								<div class="email text-lowercase">{{ content.field_profile_email }}</div>
+							</div>
+						{% endif %}
+						
+						{% if not node.field_profile_phone.isEmpty() %}
+							<div class="office-phone col-sm-6">
+								<h4 class="profile-contact-title">Phone</h4>
+								<div class="phone">{{ content.field_profile_phone }}</div>
+							</div>
+						{% endif %}
+						
+						{% set file = node.field_profile_cv.entity %}
+						{% if file %}
+							{# set url = file_url(file.uri.value) #}
+							<div class="office-cv col-sm-6">
+								<h4 class="profile-contact-title">Curriculum Vitae</h4>
+								<div class="cv-link">{{ content.field_profile_cv }}</div>
+							</div>
+						{% endif %}
+						
+						{% if not node.field_profile_education.isEmpty() %}
+							<div class="office-education col-sm-12">
+								<h4 class="profile-contact-title">Education</h4>
+								<div class="education-items">
+									{{ content.field_profile_education }}
+								</div>
+							</div>
+						{% endif %}
+						</div>
+					</div>
+				
+					<div class="profile-image col-12 col-md-4">
+					  {{ content.field_profile_image }}
+					</div>
+				</div>
+			</div>
+		</section>
+		
+		
+		<section class="profile-extra">
+			<div class="container">				
+				{% if not node.field_profile_description.isEmpty() %}
+				<div class="profile-description col-md-8" data-aos="fade-up">
+					<div class="description">{{ content.field_profile_description }}</div>
+				</div>
+				{% endif %}
+				
+				
+				{% if not node.field_profile_section.isEmpty() %}
+				{{ content.field_profile_section }}
+				{% endif %}
+			</div>
+		</section>
+	</main>
+	<!-- End of Main Content -->
+    {% if page.featured_bottom %}
+        <!-- Feature Top (Call To Action)-->
+            {{ page.featured_bottom }}
+        <!-- End of Feature top -->
+    {% endif %}
+{% include '@university_pro/footer/footer.html.twig' %}
