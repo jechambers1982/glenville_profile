@@ -1,0 +1,13 @@
+<div class="directory-block" id="directory-{{ dom_id }}">
+  {% if rows %}
+    <div class="directory-grid row">
+      {{ rows }}
+    </div>
+  {% else %}
+    <div class="directory-block__empty">{{ empty }}</div>
+  {% endif %}
+
+  {% if pager %}
+    <nav class="directory-block__pager">{{ pager }}</nav>
+  {% endif %}
+</div>
