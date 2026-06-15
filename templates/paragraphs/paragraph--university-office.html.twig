@@ -1,0 +1,9 @@
+{% set pos = paragraph.field_profile_position.value %}
+<div class="position">
+  {% if pos %}
+    <span class="title">{{ pos }}</span>
+  {% endif %}
+  {% if content.field_profile_department %}
+    <span class="offices"><span class="office-dash"> — </span>{{ content.field_profile_department }}</span>
+  {% endif %}
+</div>

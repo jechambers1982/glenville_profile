@@ -1,0 +1,13 @@
+{% set term = paragraph.field_office_directory.entity ?? null %}
+<section class="office-directory">
+  <div class="container">
+    <div class="col-12">
+      {% if term %}
+        <h3>{{ content.field_title }}</h3>
+        {% if paragraph.field_office_directory.entity %}
+			{{ drupal_view('directory', 'office_directory', paragraph.field_office_directory.entity.id) }}
+		{% endif %}
+      {% endif %}
+    </div>
+  </div>
+</section>
